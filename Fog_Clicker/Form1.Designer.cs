@@ -247,7 +247,7 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.ShowIcon = false;
-            this.Text = "Fog_Clickrr 1.0 by erty";
+            this.Text = "Fog_Clickrr by erty";
             ((System.ComponentModel.ISupportInitialize)(this.cpstb)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

@@ -17,6 +17,12 @@ namespace Fog_Clicker
 {
     internal class Program
     {
+        [DllImport("user32.dll")]
+        public static extern IntPtr GetForegroundWindow();
+
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+
         static string ComputeSha256Hash(string rawData)
         {
             // Create a SHA256   
@@ -49,8 +55,19 @@ namespace Fog_Clicker
             }
 
             Console.WriteLine("up to date :)");
-            Thread.Sleep(2000);
+            Console.WriteLine(clicker_info);
+            Console.Title = "Fog clickrr " + clicker_info;
+            Thread.Sleep(1800);
             Console.Clear();
+            Process[] processes = Process.GetProcessesByName("javaw");
+            foreach (Process process in processes)
+            {
+                string mc = process.MainWindowTitle;
+                Console.WriteLine("MC instance found");
+                Console.WriteLine(mc);
+                Thread.Sleep(2000);
+                Console.Clear();
+            }
 
             Console.SetWindowSize(40, 10);
             Console.WriteLine("Enter UserID");
@@ -78,7 +95,8 @@ namespace Fog_Clicker
             else
             {
                 Console.Clear();
-                Console.WriteLine("Error while contacting server, try again later :(");
+                Console.WriteLine("Error while contacting server :(");
+                Console.WriteLine("try again later");
                 Thread.Sleep(4000);
                 Console.Clear();
                 Environment.Exit(0);
