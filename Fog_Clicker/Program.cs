@@ -41,7 +41,7 @@ namespace Fog_Clicker
             }
         }
         
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Console.WriteLine("checking Version...");
             WebClient info = new WebClient();
@@ -59,14 +59,25 @@ namespace Fog_Clicker
             Console.Title = "Fog clickrr " + clicker_info;
             Thread.Sleep(1800);
             Console.Clear();
-            Process[] processes = Process.GetProcessesByName("javaw");
-            foreach (Process process in processes)
+            Process[] McInstance = Process.GetProcessesByName("javaw");
+
+            if (McInstance.Length == 0)
             {
-                string mc = process.MainWindowTitle;
-                Console.WriteLine("MC instance found");
-                Console.WriteLine(mc);
+                Console.WriteLine("Mc instance not found :(");
                 Thread.Sleep(2000);
-                Console.Clear();
+                Environment.Exit(0);
+            }
+            else
+            {
+                foreach (Process process in McInstance)
+                {
+                    string mc = process.MainWindowTitle;
+
+                    Console.WriteLine("MC instance found");
+                    Console.WriteLine(mc);
+                    Thread.Sleep(2000);
+                    Console.Clear();
+                }
             }
 
             Console.SetWindowSize(40, 10);
@@ -102,5 +113,5 @@ namespace Fog_Clicker
                 Environment.Exit(0);
             }
         }
-    }
+    }       
 }

@@ -176,6 +176,25 @@ namespace Fog_Clicker
                 int delay = 800 / 12;
                 a_clicker.Interval = delay;
             }
+            else if (ac_options.Text == "No randomizer")
+            {
+                int delay = 1000 / 12;
+                a_clicker.Interval = delay;
+            }
+            else if (ac_options.Text == "Axenta")
+            {
+                int minval;
+                int maxval;
+                minval = (1000 / 14 + 11 * (int)0.2);
+                maxval = (1000 / 14 + 11 * (int)0.48);
+
+
+                int minval2;
+                int maxval2;
+                minval2 = minval + 15;
+                maxval2 = maxval + 15;
+                a_clicker.Interval = rnd.Next(minval2, maxval2);
+            }
             else
             {
                 a_clicker.Interval = rnd.Next(12 -3, 12 +3);

@@ -207,7 +207,9 @@
             "Dope old",
             "Night clicker",
             "Mango",
-            "Zoom"});
+            "Zoom",
+            "Axenta",
+            "No randomizer"});
             this.ac_options.Location = new System.Drawing.Point(6, 63);
             this.ac_options.Name = "ac_options";
             this.ac_options.Size = new System.Drawing.Size(109, 24);
