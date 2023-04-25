@@ -140,9 +140,6 @@ namespace Fog_Clicker
        
         #endregion
 
-        #region block hit
-
-        #endregion
         #region ac_controller
         public static Random rnd = new Random();
         private void ac_controller_Tick(object sender, EventArgs e)
@@ -213,9 +210,22 @@ namespace Fog_Clicker
                     {
                         if (!menucheck.ClickerExtensionHandle.InMenu())
                         {
-                            SendMessage(GetForegroundWindow(), 0x201, 0, 0);
-                            Thread.Sleep(rnd.Next(10, 30));
-                            SendMessage(GetForegroundWindow(), 0x202, 0, 0);
+                            if (ac_shiftd.Checked)
+                            {
+                                if (GetAsyncKeyState(Keys.LShiftKey) == 0)
+                                {
+                                    SendMessage(GetForegroundWindow(), 0x201, 0, 0);
+                                    Thread.Sleep(rnd.Next(10, 30));
+                                    SendMessage(GetForegroundWindow(), 0x202, 0, 0);
+                                }
+                                
+                            }
+                            else
+                            {
+                                SendMessage(GetForegroundWindow(), 0x201, 0, 0);
+                                Thread.Sleep(rnd.Next(10, 30));
+                                SendMessage(GetForegroundWindow(), 0x202, 0, 0);
+                            }
                         }
                     }
                 }
