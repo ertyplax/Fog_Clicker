@@ -94,7 +94,7 @@ namespace Fog_Clicker
                 actoggle.BackColor = Color.Crimson;
                 actoggle.ForeColor = Color.FromArgb(10, 10, 10);
             }
-            else if (clickertoggle.Text == "Disabled")
+            else if (actoggle.Text == "Disabled")
             {
                 actoggle.ForeColor = Color.Crimson;
                 actoggle.BackColor = Color.FromArgb(10, 10, 10);
@@ -104,7 +104,7 @@ namespace Fog_Clicker
 
         //actual clicker
         #region clicking
-        private async void clicker_Tick(object sender, EventArgs e)
+        private void clicker_Tick(object sender, EventArgs e)
         {
             clicker.Interval = 1000 / RandomisedCPS;
             Process[] processes = Process.GetProcessesByName("javaw");
@@ -118,9 +118,22 @@ namespace Fog_Clicker
                         {
                             if (!menucheck.ClickerExtensionHandle.InMenu())
                             {
-                                SendMessage(GetForegroundWindow(), 0x201, 0, 0);
-                                await Task.Delay(20);
-                                SendMessage(GetForegroundWindow(), 0x202, 0, 0);
+                                if (shiftdnclicker.Checked)
+                                {
+                                    if (GetAsyncKeyState(Keys.LShiftKey) == 0)
+                                    {
+                                        SendMessage(GetForegroundWindow(), 0x201, 0, 0);
+                                        Thread.Sleep(rnd.Next(10, 30));
+                                        SendMessage(GetForegroundWindow(), 0x202, 0, 0);
+                                    }
+
+                                }
+                                else
+                                {
+                                    SendMessage(GetForegroundWindow(), 0x201, 0, 0);
+                                    Thread.Sleep(rnd.Next(10, 30));
+                                    SendMessage(GetForegroundWindow(), 0x202, 0, 0);
+                                }
                             }
                         }
                     }

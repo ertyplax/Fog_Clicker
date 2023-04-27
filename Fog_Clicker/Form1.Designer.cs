@@ -42,14 +42,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.a_clicker = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.shiftdnclicker = new System.Windows.Forms.CheckBox();
             this.ac = new System.Windows.Forms.Panel();
+            this.ac_shiftd = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.ac_options = new System.Windows.Forms.ComboBox();
             this.des = new System.Windows.Forms.Button();
             this.ac_controller = new System.Windows.Forms.Timer(this.components);
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
-            this.label2 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.ac_shiftd = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.cpstb)).BeginInit();
             this.panel1.SuspendLayout();
             this.ac.SuspendLayout();
@@ -178,7 +178,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.panel1.Controls.Add(this.checkBox1);
+            this.panel1.Controls.Add(this.shiftdnclicker);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.clickertoggle);
             this.panel1.Controls.Add(this.clickerbind);
@@ -188,6 +188,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(251, 115);
             this.panel1.TabIndex = 11;
+            // 
+            // shiftdnclicker
+            // 
+            this.shiftdnclicker.AutoSize = true;
+            this.shiftdnclicker.Font = new System.Drawing.Font("Consolas", 8F);
+            this.shiftdnclicker.ForeColor = System.Drawing.Color.Crimson;
+            this.shiftdnclicker.Location = new System.Drawing.Point(6, 87);
+            this.shiftdnclicker.Name = "shiftdnclicker";
+            this.shiftdnclicker.Size = new System.Drawing.Size(104, 17);
+            this.shiftdnclicker.TabIndex = 8;
+            this.shiftdnclicker.Text = "Shift disable";
+            this.shiftdnclicker.UseVisualStyleBackColor = true;
             // 
             // ac
             // 
@@ -204,6 +216,41 @@
             this.ac.Size = new System.Drawing.Size(251, 115);
             this.ac.TabIndex = 12;
             // 
+            // ac_shiftd
+            // 
+            this.ac_shiftd.AutoSize = true;
+            this.ac_shiftd.Font = new System.Drawing.Font("Consolas", 8F);
+            this.ac_shiftd.ForeColor = System.Drawing.Color.Crimson;
+            this.ac_shiftd.Location = new System.Drawing.Point(6, 87);
+            this.ac_shiftd.Name = "ac_shiftd";
+            this.ac_shiftd.Size = new System.Drawing.Size(104, 17);
+            this.ac_shiftd.TabIndex = 9;
+            this.ac_shiftd.Text = "Shift disable";
+            this.ac_shiftd.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Consolas", 12F);
+            this.label2.ForeColor = System.Drawing.Color.Crimson;
+            this.label2.Location = new System.Drawing.Point(145, 8);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(54, 19);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "CPS:6";
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.AutoSize = false;
+            this.trackBar1.Location = new System.Drawing.Point(0, 62);
+            this.trackBar1.Maximum = 20;
+            this.trackBar1.Minimum = 6;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(251, 19);
+            this.trackBar1.TabIndex = 8;
+            this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trackBar1.Value = 6;
+            // 
             // ac_options
             // 
             this.ac_options.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
@@ -211,6 +258,7 @@
             this.ac_options.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ac_options.ForeColor = System.Drawing.Color.Crimson;
             this.ac_options.FormattingEnabled = true;
+            this.ac_options.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.ac_options.Items.AddRange(new object[] {
             "Basic",
             "Dope old",
@@ -221,6 +269,7 @@
             "No randomizer"});
             this.ac_options.Location = new System.Drawing.Point(116, 82);
             this.ac_options.Name = "ac_options";
+            this.ac_options.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.ac_options.Size = new System.Drawing.Size(132, 24);
             this.ac_options.TabIndex = 9;
             this.ac_options.TabStop = false;
@@ -244,53 +293,6 @@
             this.ac_controller.Enabled = true;
             this.ac_controller.Interval = 200;
             this.ac_controller.Tick += new System.EventHandler(this.ac_controller_Tick);
-            // 
-            // trackBar1
-            // 
-            this.trackBar1.AutoSize = false;
-            this.trackBar1.Location = new System.Drawing.Point(0, 62);
-            this.trackBar1.Maximum = 20;
-            this.trackBar1.Minimum = 6;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(251, 19);
-            this.trackBar1.TabIndex = 8;
-            this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.trackBar1.Value = 6;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Consolas", 12F);
-            this.label2.ForeColor = System.Drawing.Color.Crimson;
-            this.label2.Location = new System.Drawing.Point(145, 8);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 19);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "CPS:6";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Consolas", 8F);
-            this.checkBox1.ForeColor = System.Drawing.Color.Crimson;
-            this.checkBox1.Location = new System.Drawing.Point(6, 87);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(104, 17);
-            this.checkBox1.TabIndex = 8;
-            this.checkBox1.Text = "Shift disable";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // ac_shiftd
-            // 
-            this.ac_shiftd.AutoSize = true;
-            this.ac_shiftd.Font = new System.Drawing.Font("Consolas", 8F);
-            this.ac_shiftd.ForeColor = System.Drawing.Color.Crimson;
-            this.ac_shiftd.Location = new System.Drawing.Point(6, 87);
-            this.ac_shiftd.Name = "ac_shiftd";
-            this.ac_shiftd.Size = new System.Drawing.Size(104, 17);
-            this.ac_shiftd.TabIndex = 9;
-            this.ac_shiftd.Text = "Shift disable";
-            this.ac_shiftd.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -337,7 +339,7 @@
         private System.Windows.Forms.ComboBox ac_options;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TrackBar trackBar1;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox shiftdnclicker;
         private System.Windows.Forms.CheckBox ac_shiftd;
     }
 }

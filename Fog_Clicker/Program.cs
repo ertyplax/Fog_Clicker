@@ -73,7 +73,7 @@ namespace Fog_Clicker
                 {
                     string mc = process.MainWindowTitle;
 
-                    Console.WriteLine("MC instance found");
+                    Console.WriteLine("MC Instance found");
                     Console.WriteLine(mc);
                     Thread.Sleep(2000);
                     Console.Clear();
@@ -98,7 +98,18 @@ namespace Fog_Clicker
                 Console.Clear();
                 Console.SetWindowSize(40, 10);
                 Console.WriteLine("currently logged as: " + user);
+
+                foreach (Process process in McInstance)
+                {
+                    string mc = process.MainWindowTitle;
+
+                    Console.WriteLine("Current MC instance:");
+                    Console.WriteLine(mc);
+                }
+
+                Console.WriteLine();
                 Console.WriteLine("Do Not close this window");
+
                 Application.EnableVisualStyles(); 
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new Form1());
