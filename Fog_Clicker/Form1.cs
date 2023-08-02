@@ -30,6 +30,12 @@ namespace Fog_Clicker
 
         [DllImport("User32.dll")]
         public static extern short GetAsyncKeyState(System.Windows.Forms.Keys vKey); // Keys enumeration
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
+
+        [DllImport("user32.dll")]
+        static extern int SetWindowText(IntPtr hWnd, string text);
         #endregion
         public Form1()
         {
@@ -107,34 +113,27 @@ namespace Fog_Clicker
         private void clicker_Tick(object sender, EventArgs e)
         {
             clicker.Interval = 1000 / RandomisedCPS;
-            Process[] processes = Process.GetProcessesByName("javaw");
-            foreach (Process process in processes)
+            if (clickertoggle.Text == "Enabled")
             {
-                if (GetForegroundWindow() == FindWindow(null, process.MainWindowTitle))
+                if (MouseButtons == MouseButtons.Left)
                 {
-                    if (clickertoggle.Text == "Enabled")
+                    if (!menucheck.ClickerExtensionHandle.InMenu())
                     {
-                        if (MouseButtons == MouseButtons.Left)
+                        if (shiftdnclicker.Checked)
                         {
-                            if (!menucheck.ClickerExtensionHandle.InMenu())
+                            if (GetAsyncKeyState(Keys.LShiftKey) == 0)
                             {
-                                if (shiftdnclicker.Checked)
-                                {
-                                    if (GetAsyncKeyState(Keys.LShiftKey) == 0)
-                                    {
-                                        SendMessage(GetForegroundWindow(), 0x201, 0, 0);
-                                        Thread.Sleep(rnd.Next(10, 30));
-                                        SendMessage(GetForegroundWindow(), 0x202, 0, 0);
-                                    }
-
-                                }
-                                else
-                                {
-                                    SendMessage(GetForegroundWindow(), 0x201, 0, 0);
-                                    Thread.Sleep(rnd.Next(10, 30));
-                                    SendMessage(GetForegroundWindow(), 0x202, 0, 0);
-                                }
+                                SendMessage(GetForegroundWindow(), 0x201, 0, 0);
+                                Thread.Sleep(rnd.Next(10, 30));
+                                SendMessage(GetForegroundWindow(), 0x202, 0, 0);
                             }
+
+                        }
+                        else
+                        {
+                            SendMessage(GetForegroundWindow(), 0x201, 0, 0);
+                            Thread.Sleep(rnd.Next(10, 30));
+                            SendMessage(GetForegroundWindow(), 0x202, 0, 0);
                         }
                     }
                 }
@@ -214,32 +213,25 @@ namespace Fog_Clicker
         #region advanced clicker
         public void a_clicker_Tick(object sender, EventArgs e)
         {
-            Process[] processes = Process.GetProcessesByName("javaw");
-            foreach (Process process in processes)
+            if (MouseButtons == MouseButtons.Left)
             {
-                if (GetForegroundWindow() == FindWindow(null, process.MainWindowTitle))
+                if (!menucheck.ClickerExtensionHandle.InMenu())
                 {
-                    if (MouseButtons == MouseButtons.Left)
+                    if (ac_shiftd.Checked)
                     {
-                        if (!menucheck.ClickerExtensionHandle.InMenu())
+                        if (GetAsyncKeyState(Keys.LShiftKey) == 0)
                         {
-                            if (ac_shiftd.Checked)
-                            {
-                                if (GetAsyncKeyState(Keys.LShiftKey) == 0)
-                                {
-                                    SendMessage(GetForegroundWindow(), 0x201, 0, 0);
-                                    Thread.Sleep(rnd.Next(10, 30));
-                                    SendMessage(GetForegroundWindow(), 0x202, 0, 0);
-                                }
-                                
-                            }
-                            else
-                            {
-                                SendMessage(GetForegroundWindow(), 0x201, 0, 0);
-                                Thread.Sleep(rnd.Next(10, 30));
-                                SendMessage(GetForegroundWindow(), 0x202, 0, 0);
-                            }
+                            SendMessage(GetForegroundWindow(), 0x201, 0, 0);
+                            Thread.Sleep(rnd.Next(10, 30));
+                            SendMessage(GetForegroundWindow(), 0x202, 0, 0);
                         }
+
+                    }
+                    else
+                    {
+                        SendMessage(GetForegroundWindow(), 0x201, 0, 0);
+                        Thread.Sleep(rnd.Next(10, 30));
+                        SendMessage(GetForegroundWindow(), 0x202, 0, 0);
                     }
                 }
             }
@@ -256,7 +248,7 @@ namespace Fog_Clicker
         KeysConverter aKey = new KeysConverter();
         private void aclickerbind_KeyUp(object sender, KeyEventArgs e)
         {
-            string akeydata = e.KeyData.ToString();
+            string akeydata = aKey.ToString();
             if (!akeydata.Contains("Alt"))
             {
                 if (clickerbind.BackColor == Color.Crimson)
@@ -295,7 +287,7 @@ namespace Fog_Clicker
 
         //destruct
         #region destruct
-        private void des_Click(object sender, EventArgs e)
+        public void des_Click(object sender, EventArgs e)
         {
             Destruct.Destruction();
         }

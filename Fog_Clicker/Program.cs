@@ -23,24 +23,12 @@ namespace Fog_Clicker
         [DllImport("user32.dll", SetLastError = true)]
         public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
 
-        static string ComputeSha256Hash(string rawData)
-        {
-            // Create a SHA256   
-            using (SHA256 sha256Hash = SHA256.Create())
-            {
-                // ComputeHash - returns byte array  
-                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(rawData));
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
 
-                // Convert byte array to a string   
-                StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < bytes.Length; i++)
-                {
-                    builder.Append(bytes[i].ToString("x2"));
-                }
-                return builder.ToString();
-            }
-        }
-        
+        [DllImport("user32.dll")]
+        static extern int SetWindowText(IntPtr hWnd, string text);
+
         public static void Main(string[] args)
         {
             Console.WriteLine("checking Version...");
@@ -60,7 +48,8 @@ namespace Fog_Clicker
             Thread.Sleep(1800);
             Console.Clear();
             Process[] McInstance = Process.GetProcessesByName("javaw");
-
+            
+            
             if (McInstance.Length == 0)
             {
                 Console.WriteLine("Mc instance not found :(");
@@ -72,7 +61,7 @@ namespace Fog_Clicker
                 foreach (Process process in McInstance)
                 {
                     string mc = process.MainWindowTitle;
-
+                    
                     Console.WriteLine("MC Instance found");
                     Console.WriteLine(mc);
                     Thread.Sleep(2000);
@@ -81,23 +70,20 @@ namespace Fog_Clicker
             }
 
             Console.SetWindowSize(40, 10);
-            Console.WriteLine("Enter UserID");
-            string user = Console.ReadLine();
             Console.Clear();
             Console.WriteLine("Checking HWID...");
             WebClient client = new WebClient();
 
             string HWID = System.Security.Principal.WindowsIdentity.GetCurrent().User.Value;
 
-            string appHWID = client.DownloadString("https://raw.githubusercontent.com/ertyplax/Fog_Auth/main/Fog");
-            if (appHWID.Contains(ComputeSha256Hash(HWID + "qOYL6ikQ4axxIyiwi5z82yChFBvhfT" + user)))
+            if (HWID.Length != 0)
             {
                 Console.Clear();
                 Console.WriteLine("Authenticated :)");
                 Thread.Sleep(2000);
                 Console.Clear();
                 Console.SetWindowSize(40, 10);
-                Console.WriteLine("currently logged as: " + user);
+                Console.WriteLine("currently logged as: " + "[guest]");
 
                 foreach (Process process in McInstance)
                 {
@@ -105,7 +91,15 @@ namespace Fog_Clicker
 
                     Console.WriteLine("Current MC instance:");
                     Console.WriteLine(mc);
+
+                    string pid = mc.ToString();
+                    string newname = "Fog_Clickrr LMAO | Made by erty | ertyplax.github.io/fogwebsite | Skidding ass clickers since 2022 :)";
+                    Process[] proc = Process.GetProcessesByName(pid);
+                    SetWindowText(process.MainWindowHandle, newname);
+                    SetWindowText(process.Handle, "Fog_Clickrr on top!!!");
                 }
+
+
 
                 Console.WriteLine();
                 Console.WriteLine("Do Not close this window");
@@ -113,15 +107,6 @@ namespace Fog_Clicker
                 Application.EnableVisualStyles(); 
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new Form1());
-            }
-            else
-            {
-                Console.Clear();
-                Console.WriteLine("Error while contacting server :(");
-                Console.WriteLine("try again later");
-                Thread.Sleep(4000);
-                Console.Clear();
-                Environment.Exit(0);
             }
         }
     }       

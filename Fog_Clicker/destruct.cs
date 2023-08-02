@@ -16,6 +16,12 @@ namespace Fog_Clicker
 {
     public class Destruct
     {
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
+
+        [DllImport("user32.dll")]
+        static extern int SetWindowText(IntPtr hWnd, string text);
+
         [DllImport("Kernel32.dll", SetLastError = true)]
         public static extern IntPtr OpenProcess(
             int dwDesitedAccess,
